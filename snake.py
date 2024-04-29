@@ -50,7 +50,7 @@ class Snake:
             else:
                 segment.forward(20)
 
-            self.new_part()
+        self.new_part()
 
     def turn_left(self):
         head = self.segments[len(self.segments) - 1]
