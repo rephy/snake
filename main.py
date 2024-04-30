@@ -14,7 +14,11 @@ messages.keep_score(score)
 while snake.game:
     snake.screen.update()
     sleep(0.1)
-    snake.move()
+    move = snake.move()
+
+    if abs(snake.segments[len(snake.segments) - 1].xcor()) >= 300 or abs(snake.segments[len(snake.segments) - 1].ycor()) >= 300:
+        messages.game_over()
+        snake.game = False
 
     if snake.segments[len(snake.segments) - 1].distance(food) < 15:
         food.remove()
