@@ -6,7 +6,7 @@ class Snake:
     def __init__(self):
         self.game = True
 
-        self.start_positions = [(20, 0), (0, 0), (-20, 0)]
+        self.start_positions = [(-20, 0), (0, 0), (20, 0)]
 
         self.segments = []
 
@@ -45,10 +45,15 @@ class Snake:
             segment = self.segments[n]
             if n + 1 != len(self.segments):
                 target = self.segments[n + 1]
+                segment.speed(10000)
                 segment.goto(target.xcor(), target.ycor())
+                segment.speed(3)
                 self.screen.update()
             else:
                 segment.forward(20)
+
+        self.check_self_collision()
+        self.check_wall_collision()
 
         self.new_part()
 
@@ -94,6 +99,31 @@ class Snake:
         for t in self.incoming_segments:
             self.segments.insert(0, t)
             self.incoming_segments = []
+
+    def check_self_collision(self):
+        segment_positions = []
+        none_duplicate_segment_positions = []
+
+        for segment in self.segments:
+            segment_positions.append(segment.pos())
+
+            duplicate_exists = False
+
+            for not_duplicate_segment in none_duplicate_segment_positions:
+                if segment.pos() == not_duplicate_segment:
+                    duplicate_exists = True
+
+            if duplicate_exists == False:
+                none_duplicate_segment_positions.append(segment.pos())
+
+        if segment_positions == none_duplicate_segment_positions:
+            pass
+        else:
+            self.game = False
+
+    def check_wall_collision(self):
+        if abs(self.segments[len(self.segments) - 1].xcor()) >= 300 or abs(self.segments[len(self.segments) - 1].ycor()) >= 300:
+            self.game = False
 
     def exit(self):
         self.screen.exitonclick()
