@@ -59,28 +59,28 @@ class Snake:
 
     def turn_left(self):
         head = self.segments[len(self.segments) - 1]
-        if head.heading() != 0:
+        if head.heading() != 0 and round(head.heading()/90) == head.heading()/90:
             head.speed(10000)
             head.setheading(180)
             head.speed(3)
 
     def turn_right(self):
         head = self.segments[len(self.segments) - 1]
-        if head.heading() != 180:
+        if head.heading() != 180 and round(head.heading()/90) == head.heading()/90:
             head.speed(10000)
             head.setheading(0)
             head.speed(3)
 
     def turn_up(self):
         head = self.segments[len(self.segments) - 1]
-        if head.heading() != 270:
+        if head.heading() != 270 and round(head.heading()/90) == head.heading()/90:
             head.speed(10000)
             head.setheading(90)
             head.speed(3)
 
     def turn_down(self):
         head = self.segments[len(self.segments) - 1]
-        if head.heading() != 90:
+        if head.heading() != 90 and round(head.heading()/90) == head.heading()/90:
             head.speed(10000)
             head.setheading(270)
             head.speed(3)
