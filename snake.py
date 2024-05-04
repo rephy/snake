@@ -37,6 +37,7 @@ class Snake:
             t.shape("square")
             t.color("white")
             t.penup()
+            t.speed(10000)
             t.goto(self.start_positions[n][0], self.start_positions[n][1])
             self.segments.append(t)
 
@@ -45,9 +46,7 @@ class Snake:
             segment = self.segments[n]
             if n + 1 != len(self.segments):
                 target = self.segments[n + 1]
-                segment.speed(10000)
                 segment.goto(target.xcor(), target.ycor())
-                segment.speed(3)
                 self.screen.update()
             else:
                 segment.forward(20)
@@ -60,30 +59,22 @@ class Snake:
     def turn_left(self):
         head = self.segments[len(self.segments) - 1]
         if head.heading() != 0 and round(head.heading()/90) == head.heading()/90:
-            head.speed(10000)
             head.setheading(180)
-            head.speed(3)
 
     def turn_right(self):
         head = self.segments[len(self.segments) - 1]
         if head.heading() != 180 and round(head.heading()/90) == head.heading()/90:
-            head.speed(10000)
             head.setheading(0)
-            head.speed(3)
 
     def turn_up(self):
         head = self.segments[len(self.segments) - 1]
         if head.heading() != 270 and round(head.heading()/90) == head.heading()/90:
-            head.speed(10000)
             head.setheading(90)
-            head.speed(3)
 
     def turn_down(self):
         head = self.segments[len(self.segments) - 1]
         if head.heading() != 90 and round(head.heading()/90) == head.heading()/90:
-            head.speed(10000)
             head.setheading(270)
-            head.speed(3)
 
     def new_part_incoming(self):
         t = Turtle()
@@ -92,7 +83,6 @@ class Snake:
         t.penup()
         t.speed(10000)
         t.goto(self.segments[0].xcor(), self.segments[0].ycor())
-        t.speed(3)
         self.incoming_segments.append(t)
 
     def new_part(self):

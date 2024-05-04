@@ -19,7 +19,7 @@ messages.keep_score(score, high_score)
 
 while snake.game:
     snake.screen.update()
-    sleep(0.1)
+    sleep(0.1/len(snake.segments))
     snake.move()
 
     if snake.segments[len(snake.segments) - 1].distance(food) < 15:
