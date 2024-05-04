@@ -10,9 +10,9 @@ class Texts(Turtle):
         self.speed("fastest")
         self.color("white")
 
-    def keep_score(self, score):
+    def keep_score(self, score, high_score):
         self.clear()
-        self.write(f"Score: {score}", font=("Verdana", 20, "bold"), align="center")
+        self.write(f"Score: {score} | High Score: {high_score}", font=("Verdana", 20, "bold"), align="center")
 
     def game_over(self):
         self.speed(10000)
